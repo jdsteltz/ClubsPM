@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
         <div class="container">
@@ -47,41 +46,60 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 text-center">
+
                 <form>
-                    <legend>Check Request Form</legend>
+                    <legend>Meeting Tracker Form</legend>
                     <fieldset>
-                        <label>Name of organization or full name of payee</label>
-                        <input type="text" required>
+                        <label for="organization">Name of Organization</label>
+                        <input type="text" id="organization" name="organization" required>
                     </fieldset>
 
                     <fieldset>
-                        <label>Amount</label>
-                        <input type="text" required>
-                    </fieldset>
-                    <fieldset>
-                        <label>Reason</label>
-                        <input type="text" required>
+                        <label for="studentRep">Name of Student Representative</label>
+                        <input type="text" id="studentRep" name="studentRep" required>
                     </fieldset>
 
                     <fieldset>
-                        <label>Individual requesting check</label>
-                        <input type="text" required>
-                    </fieldset>
-                    <fieldset>
-                        <label>Organization to be charged</label>
-                        <input type="text" required>
+                        <label for="email">Email of Student Representative</label>
+                        <input type="email" id="email" name="email" placeholder="name@site.com" required>
                     </fieldset>
 
                     <fieldset>
-                        <label>When the check is needed</label>
-                        <input type="date">
+                        <label for="date">Date of Meeting/Event</label>
+                        <input type="date" id="date" name="date" placeholder="01/01/2000" required>
                     </fieldset>
-                    
+
                     <fieldset>
-                        <label>Comments</label>
-                        <input type="text" style="height: 10ch; overflow: scroll;" required>
+                        <label for="time">Time of Meeting/Event</label>
+                        <input type="time" id="time" name="time" placeholder="17:00" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="location">Location of Meeting/Event</label>
+                        <input type="text" id="location" name="location" placeholder="New York" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="people">Number of People Attending</label>
+                        <input type="number" id="people" name="people" placeholder="70" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="cost">Cost of the Meeting/Event</label>
+                        <input type="number" id="cost" name="cost" placeholder="$563.49" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="future">Any Future Meetings/Events</label>
+                        <input type="text" id="future" name="future">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="current">Number of Current Members</label>
+                        <input type="number" id="current" name="current" placeholder="58" required>
                     </fieldset>
                 </form>
+                </ul>
             </div>
         </div>
     </div>
