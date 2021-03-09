@@ -50,18 +50,53 @@
                 <form>
                     <legend>Meeting Tracker Form</legend>
                     <fieldset>
-                        <label for="date">Date of Meeting</label>
-                        <input type="date" id="date" name="date" placeholder="01/01/2000">
+                        <label for="organization">Name of Organization</label>
+                        <input type="text" id="organization" name="organization" required>
                     </fieldset>
 
                     <fieldset>
-                        <label for="time">Time of Meeting</label>
-                        <input type="time" id="time" name="time" placeholder="17:00">
+                        <label for="studentRep">Name of Student Representative</label>
+                        <input type="text" id="studentRep" name="studentRep" required>
                     </fieldset>
 
                     <fieldset>
-                        <label for="location">Location of Meeting</label>
-                        <input type="text" id="location" name="location" placeholder="New York">
+                        <label for="email">Email of Student Representative</label>
+                        <input type="email" id="email" name="email" placeholder="name@site.com" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="date">Date of Meeting/Event</label>
+                        <input type="date" id="date" name="date" placeholder="01/01/2000" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="time">Time of Meeting/Event</label>
+                        <input type="time" id="time" name="time" placeholder="17:00" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="location">Location of Meeting/Event</label>
+                        <input type="text" id="location" name="location" placeholder="New York" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="people">Number of People Attending</label>
+                        <input type="number" id="people" name="people" placeholder="70" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="cost">Cost of the Meeting/Event</label>
+                        <input type="number" id="cost" name="cost" placeholder="$563.49" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="future">Any Future Meetings/Events</label>
+                        <input type="text" id="future" name="future">
+                    </fieldset>
+
+                    <fieldset>
+                        <label for="current">Number of Current Members</label>
+                        <input type="number" id="current" name="current" placeholder="58" required>
                     </fieldset>
                 </form>
                 </ul>
