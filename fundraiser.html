@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
 </head>
 
@@ -60,7 +61,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="organization">Name</label>
-                    <input type="text" class="form-control" id="name">
+                    <input type="text" class="form-control" pattern="^[A-Za-z]+$" id="name">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="organization">Email</label>
@@ -92,14 +93,16 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="cost">Up Front Cost</label>
-                    <input type="text" class="form-control" id="cost"></input>
+                    <input type="text" class="form-control" id="cost" pattern="^\$?[0-9]+(.[0-9][0-9])?$"
+                        placeholder="$##.##"></input>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="description">Usage of Funds</label>
                     <textarea class="form-control" id="usage" rows="3"></textarea>
                 </div>
             </div>
-            
+
+            <div class="text-center" id="output"></div>
             <button type="submit" class="form-control btn btn-primary">Email</button>
         </form>
     </div>
@@ -117,32 +120,67 @@
             DESCRIPTION = document.getElementById("description"),
             LOCATION = document.getElementById("location"),
             COST = document.getElementById("cost"),
-            USAGE = document.getElementById("usage");
-
+            USAGE = document.getElementById("usage"),
+            OUTPUT = document.getElementById("output");
+        var output = null;
 
         listener(FORM, "onsubmit", "submit", event => {
-            let organization = ORGANIZATION.value,
-                name = NAME.value,
-                email = EMAIL.value,
-                start = START.value,
-                end = END.value,
-                description = DESCRIPTION.value,
-                location = LOCATION.value,
-                cost = COST.value,
-                usage = USAGE.value;
-            
-            console.log(organization);
-            console.log(name);
-            console.log(email);
-            console.log(start);
-            console.log(end);
-            console.log(description);
-            console.log(location);
-            console.log(cost);
-            console.log(usage);
-
             event.preventDefault();
+
+            let organization = ORGANIZATION.value.toString(),
+                name = NAME.value.toString(),
+                email = EMAIL.value.toString(),
+                start = START.value.toString(),
+                end = END.value.toString(),
+                description = DESCRIPTION.value.toString(),
+                location = LOCATION.value.toString(),
+                cost = COST.value.toString(),
+                usage = USAGE.value.toString();
+
+            if (organization.length == 0 || name.length == 0 || start.length == 0 || end.length == 0 || description.length == 0 || location.length == 0 || cost.length == 0 || usage.length == 0) {
+                setOutput("Please complete the entire form before emailing.", false);
+
+                return;
+            }
+
+            let startSplit = start.split("-"),
+                endSplit = end.split("-");
+
+            try {
+                let startYear = parseInt(startSplit[0]),
+                    startMonth = parseInt(startSplit[1]),
+                    startDay = parseInt(startSplit[2]),
+
+                    endYear = parseInt(endSplit[0]),
+                    endMonth = parseInt(endSplit[1]),
+                    endDay = parseInt(endSplit[2]);
+
+                if (endYear - startYear < 0 || endMonth - startMonth < 0 || endDay - startDay < 0) {
+                    setOutput("The end date must occur after the start date.");
+
+                    return;
+                }
+            } catch (message) {
+                setOutput("The dates specified are invalid.", false);
+
+                return;
+            }
+
+            setOutput("Email is being sent.", true);
+            //send email
         });
+
+        function setOutput(outputText, successful) {
+            if (output != null) {
+                OUTPUT.removeChild(output);
+            }
+
+            output = document.createElement("p");
+            output.innerText = outputText;
+            output.classList.add("output-fade-in");
+            output.classList.add(successful ? "success" : "error");
+            OUTPUT.appendChild(output);
+        }
 
         function listener(element, oldEvent, newEvent, func) {
             if (element.addEventListener) {
