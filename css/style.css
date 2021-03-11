@@ -1,0 +1,24 @@
+@keyframes output-fade {
+    0% {
+        opacity: 0;
+        margin-left: 20px;
+    }
+    100% {
+        opacity: 1;
+        margin-left: 0px;
+    }
+}
+
+.error {
+    color: red;
+}
+
+.success {
+    color: greenyellow
+}
+
+.output-fade-in {
+    animation: output-fade;
+    animation-fill-mode: forwards;
+    animation-duration: 200ms;
+}
