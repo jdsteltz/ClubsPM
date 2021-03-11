@@ -43,62 +43,115 @@
     </nav>
 
     <!-- Page Content -->
+
+
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <form>
-                    <legend>Fundraiser Request Form</legend>
-                    <fieldset>
-                        <label>Name of organization</label>
-                        <input type="text" required>
-                    </fieldset>
+        <form id="fundraiser">
+            <br>
+            <h1 class="text-center">Fundraiser Request Form</h1>
+            <br>
 
-                    <fieldset>
-                        <label>Name</label>
-                        <input type="text" required>
-                    </fieldset>
-                    <fieldset>
-                        <label>Email</label>
-                        <input type="text" required>
-                    </fieldset>
-
-                    <fieldset>
-                        <label>Start Date</label>
-                        <input type="date" required>
-                    </fieldset>
-                    <fieldset>
-                        <label>End Date</label>
-                        <input type="date" required>
-                    </fieldset>
-
-                    <fieldset>
-                        <label>Description of Fundraiser</label>
-                        <input type="text" style="height: 10ch; overflow: scroll;" required>
-                    </fieldset>
-                    
-                    <fieldset>
-                        <label>Location</label>
-                        <input type="text">
-                    </fieldset>
-                    
-                    <fieldset>
-                        <label>What are the funds being used for</label>
-                        <input type="text" style="height: 10ch; overflow: scroll;" required>
-                    </fieldset>
-
-                    <fieldset>
-                        <label>Up front cost</label>
-                        <input id="yerboi" type="text" required>
-                    </fieldset>
-                </form>
+            <div class="form-row">
+                <div class="form-group col-lg-12">
+                    <label for="organization">Name of Organization</label>
+                    <input type="text" class="form-control" id="organization">
+                </div>
             </div>
-        </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="organization">Name</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="organization">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="emailname@example.com">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="organization">Start Date</label>
+                    <input type="date" class="form-control" id="start">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="organization">End Date</label>
+                    <input type="date" class="form-control" id="end">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-12">
+                    <label for="description">Describe the Fundraiser</label>
+                    <textarea class="form-control" id="description" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-lg-12">
+                    <label for="location">Location of the Fundraiser</label>
+                    <input type="text" class="form-control" id="location"></input>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cost">Up Front Cost</label>
+                    <input type="text" class="form-control" id="cost"></input>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="description">Usage of Funds</label>
+                    <textarea class="form-control" id="usage" rows="3"></textarea>
+                </div>
+            </div>
+            
+            <button type="submit" class="form-control btn btn-primary">Email</button>
+        </form>
     </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.slim.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const FORM = document.getElementById("fundraiser"),
+            ORGANIZATION = document.getElementById("organization"),
+            NAME = document.getElementById("name"),
+            EMAIL = document.getElementById("email"),
+            START = document.getElementById("start"),
+            END = document.getElementById("end"),
+            DESCRIPTION = document.getElementById("description"),
+            LOCATION = document.getElementById("location"),
+            COST = document.getElementById("cost"),
+            USAGE = document.getElementById("usage");
 
+
+        listener(FORM, "onsubmit", "submit", event => {
+            let organization = ORGANIZATION.value,
+                name = NAME.value,
+                email = EMAIL.value,
+                start = START.value,
+                end = END.value,
+                description = DESCRIPTION.value,
+                location = LOCATION.value,
+                cost = COST.value,
+                usage = USAGE.value;
+            
+            console.log(organization);
+            console.log(name);
+            console.log(email);
+            console.log(start);
+            console.log(end);
+            console.log(description);
+            console.log(location);
+            console.log(cost);
+            console.log(usage);
+
+            event.preventDefault();
+        });
+
+        function listener(element, oldEvent, newEvent, func) {
+            if (element.addEventListener) {
+                element.addEventListener(newEvent, func, false);
+            } else if (element.attachEvent) {
+                element.attachEvent(oldEvent, func);
+            }
+        }
+    </script>
 </body>
 
 </html>
